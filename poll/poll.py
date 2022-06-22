@@ -42,6 +42,8 @@ from xblockutils.resources import ResourceLoader
 from xblockutils.settings import ThemableXBlockMixin, XBlockWithSettingsMixin
 
 from .utils import DummyTranslationService, _, remove_markdown_and_html_tags
+import logging
+log = logging.getLogger(__name__)
 
 try:
     # pylint: disable=import-error, bad-option-value, ungrouped-imports
