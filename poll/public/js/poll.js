@@ -160,6 +160,13 @@ function PollUtil (runtime, element, pollType) {
         }
         // Used if results are not private, to show the user how other students voted.
         self.getResults();
+        console.log("POINT RESPONSE:",data);
+        console.log("POINTS SUBMITTED:", data.points_submitted);
+        if(data.points_submitted){
+          console.log(data.popup_html)
+          $('body').append(data.popup_html);
+          $( "#dialog" ).dialog();
+        }
     };
 
     function getStatus() {

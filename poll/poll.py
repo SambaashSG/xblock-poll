@@ -1246,7 +1246,13 @@ class SurveyBlock(PollBase, CSVExportMixin):
         result['can_vote'] = self.can_vote()
         result['submissions_count'] = self.submissions_count
         result['max_submissions'] = self.max_submissions
-
+        try:
+            from xmodule.gamification import share_gamification_user_points
+            gamification_resp = share_gamification_user_points(self, check_eligibility=False)
+            result.update(gamification_resp)
+            log.error("GAMIFICATION_RESPONSE:", gamification_resp)
+        except Exception as e:
+            log.error(f"GAMIFICATION ERROR: {e}")
         return result
 
     @XBlock.json_handler
