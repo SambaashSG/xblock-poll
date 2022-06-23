@@ -1250,7 +1250,7 @@ class SurveyBlock(PollBase, CSVExportMixin):
         result['max_submissions'] = self.max_submissions
         try:
             from xmodule.gamification import share_gamification_user_points
-            gamification_resp = share_gamification_user_points(self, check_eligibility=False)
+            gamification_resp = share_gamification_user_points(self)
             result.update(gamification_resp)
             log.error("GAMIFICATION_RESPONSE:", gamification_resp)
         except Exception as e:
