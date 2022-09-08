@@ -1163,6 +1163,7 @@ class SurveyBlock(PollBase, CSVExportMixin):
             'feedback': markdown(self.feedback),
             'plural': total > 1,
             'block_name': self.block_name,
+            'can_vote': self.can_vote(),
             # a11y: Transfer block ID to enable creating unique ids for questions and answers in the template
             'block_id': self._get_block_id()
         }
