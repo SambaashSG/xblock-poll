@@ -156,6 +156,13 @@ function PollUtil (runtime, element, pollType) {
                 // Enable the submit button.
                 self.enableSubmit();
             }
+            console.log("POINT RESPONSE:",data);
+            console.log("POINTS SUBMITTED:", data.points_submitted);
+            if(data.points_submitted){
+                console.log(data.popup_html)
+                $('body').append(data.popup_html);
+                $("#dialog").dialog();
+            }
             return;
         }
         // Used if results are not private, to show the user how other students voted.
@@ -163,9 +170,9 @@ function PollUtil (runtime, element, pollType) {
         console.log("POINT RESPONSE:",data);
         console.log("POINTS SUBMITTED:", data.points_submitted);
         if(data.points_submitted){
-          console.log(data.popup_html)
-          $('body').append(data.popup_html);
-          $( "#dialog" ).dialog();
+            console.log(data.popup_html)
+            $('body').append(data.popup_html);
+            $("#dialog").dialog();
         }
     };
 
