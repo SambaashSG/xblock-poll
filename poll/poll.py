@@ -1166,6 +1166,23 @@ class SurveyBlock(PollBase, CSVExportMixin):
             # a11y: Transfer block ID to enable creating unique ids for questions and answers in the template
             'block_id': self._get_block_id()
         }
+    
+    @PollBase.static_replace_json_handler
+    def get_choices_results(self, data, suffix=''):
+        self.publish_event_from_dict(self.event_namespace + '.view_results', {})
+        detail, total = self.tally_detail()
+        return {
+            'answers': [
+                {'key': key, 'label': label} for key, label in self.answers
+            ],
+            'tally': detail,
+            'total': total,
+            'feedback': markdown(self.feedback),
+            'plural': total > 1,
+            'block_name': self.block_name,
+            # a11y: Transfer block ID to enable creating unique ids for questions and answers in the template
+            'block_id': self._get_block_id()
+        }
 
     @XBlock.json_handler
     def load_answers(self, data, suffix=''):
